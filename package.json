@@ -1,0 +1,16 @@
+{
+  "name": "couple",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Drake Leung",
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^0.36.3"
+  }
+}
