@@ -5,12 +5,19 @@
   "main": "index.js",
   "scripts": {
     "start": "rollup -c",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "BABEL_CACHE_PATH=.babel-cache/a.json ava test/*.js -v"
+  },
+  "ava": {
+    "require": ["babel-register"]
+  },
+  "babel": {
+    "presets": ["es2015"]
   },
   "keywords": [],
   "author": "Drake Leung",
   "license": "MIT",
   "devDependencies": {
+    "ava": "^0.16.0",
     "rollup": "^0.36.3"
   }
 }
