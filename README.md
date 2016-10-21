@@ -47,3 +47,16 @@ After parsed:
   ]
 }
 ```
+
+## Development
+
+```bash
+# install
+npm i
+
+# start, and open http://localhost:10001/docs/index.html
+npm start
+
+# build for production
+npm run build
+```
