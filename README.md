@@ -1,4 +1,5 @@
-# couple
+# couple [![Build Status](https://travis-ci.org/DrakeLeung/couple.svg?branch=master)](https://travis-ci.org/DrakeLeung/couple) [![Coverage Status](https://coveralls.io/repos/github/DrakeLeung/couple/badge.svg?branch=master)](https://coveralls.io/github/DrakeLeung/couple?branch=master)
+
 a comment parser 🌵 
 
 ## Intro
