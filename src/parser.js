@@ -8,19 +8,12 @@
 export default function parser (
   tokens = []
 ) {
+  if (tokens.length === 0) return null
+
   Array.prototype.last = function () {
     return this.slice(-1)[0]
   }
 
-  function toNewTokens (tokens) {
-    return tokens.reduce((prev, { type, value }) =>
-      type === 'tag'
-        ? prev.concat({ type: value })
-        : prev.slice(0, -1)
-          .concat(Object.assign(prev.slice(-1)[0], { [type]: value }))
-    , [])
-  }
-  
   const ast = { type: 'project', body: [] }
   
   const modules = toNewTokens(tokens).reduce((prev, token) => {
@@ -39,4 +32,20 @@ export default function parser (
   }, [])
   
   return Object.assign(ast, { body: modules })
+}
+
+/**
+ * toNewTokens
+ * nest some tokens
+ * 
+ * @param {Array} tokens
+ * @returns {Array}
+ */
+function toNewTokens (tokens) {
+  return tokens.reduce((prev, { type, value }) =>
+    type === 'tag'
+      ? prev.concat({ type: value })
+      : prev.slice(0, -1)
+        .concat(Object.assign(prev.slice(-1)[0], { [type]: value }))
+  , [])
 }
