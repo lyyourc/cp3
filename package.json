@@ -6,7 +6,7 @@
   "scripts": {
     "start": "rollup -c -w",
     "build": "rollup -c",
-    "test": "BABEL_CACHE_PATH=.babel-cache/a.json ava test/*.js -v"
+    "test": "BABEL_CACHE_PATH=.babel-cache/a.json nyc ava test/*.js -v"
   },
   "ava": {
     "require": [
@@ -16,13 +16,20 @@
   "babel": {
     "presets": [
       "es2015"
-    ]
+    ],
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
+    }
   },
   "keywords": [],
   "author": "Drake Leung",
   "license": "MIT",
   "devDependencies": {
     "ava": "^0.16.0",
+    "coveralls": "^2.11.14",
+    "nyc": "^8.3.2",
     "rollup": "^0.36.3",
     "rollup-plugin-livereload": "^0.1.0",
     "rollup-plugin-serve": "^0.1.0",
