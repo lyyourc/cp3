@@ -23,10 +23,14 @@ export default function parser (
       prev.find(m => m.field === token.field) == null
     )
       prev.push(t)
-    else if (token.type === 'action')
+    else if (token.type === 'page' &&
+      prev.last().body.find(p => p.field === token.field) == null
+    )
       prev.last().body.push(t)
+    else if (token.type === 'action')
+      prev.last().body.last().body.push(t)
     else if (token.type === 'api' || token.type === 'param')
-      prev.last().body.last().body.push(token)
+      prev.last().body.last().body.last().body.push(token)
       
     return prev
   }, [])

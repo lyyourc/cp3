@@ -14,22 +14,39 @@ export default function transformer (
       newAst.moduleList.push({
         name: node.field,
         introduction: node.description,
-        actionList: [],
+        pageList: [],
       })
+    },
+    
+    page: function (node, parent) {
+      newAst.moduleList
+        .find(m => m.name === parent.field)
+        .pageList.push({
+          name: node.field,
+          actionList: [], 
+        })
     },
  
     action: function (node, parent) {
-      newAst.moduleList
-        .find(m => m.name === parent.field)
-        .actionList.push({
+      newAst.moduleList.some(m => {
+        const page = m.pageList.find(p => p.name === parent.field)
+        
+        if (page == null) return false
+        
+        page.actionList.push({
           name: node.field,
           requestParameterList: []
         })
+        return true
+      })
     },
     
     api: function (node, parent) {
       newAst.moduleList.some(m => {
-        const action = m.actionList.find(a => a.name === parent.field)
+        const action = m.pageList.reduce((prev, page) => {
+          if (prev != null) return prev
+          return page.actionList.find(a => a.name === parent.field)
+        }, null)
 
         if (action == null) return false
         
@@ -41,18 +58,19 @@ export default function transformer (
     
     param: function (node, parent) {
       newAst.moduleList.some(m => {
-        const action = m.actionList.find(a => a.name === parent.field)
+        const action = m.pageList.reduce((prev, page) => {
+          if (prev != null) return prev
+          return page.actionList.find(a => a.name === parent.field)
+        }, null)
 
-        if (action) {
-          action.requestParameterList.push({
-            identifier: node.field,
-            name: node.description,
-            dataType: node.datatype
-          })
-          return true
-        }
+        if (action == null) return false
 
-        return false
+        action.requestParameterList.push({
+          identifier: node.field,
+          name: node.description,
+          dataType: node.datatype
+        })
+        return true
       })
     },
   })

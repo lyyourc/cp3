@@ -19,6 +19,21 @@ test('tokenizer() -> @module', t => {
   ])
 })
 
+// @page
+test('tokenizer() -> @page', t => {
+  const input = `
+    /*
+     * @page profile - hero's profile
+     */
+  `
+  
+  t.deepEqual(tokenizer(input), [
+    { type: 'tag', value: 'page' },
+    { type: 'field', value: 'profile' },
+    { type: 'description', value: 'hero\'s profile' }
+  ])
+})
+
 // @action
 test('tokenizer() -> @action', t => {
   const input = `
@@ -67,7 +82,8 @@ test('tokenizer() -> @param', t => {
 test('tokenizer() -> all @', t => {
   const input = `
     /*
-     * @module setting/profile - hero's basic info
+     * @module setting - hero's setting
+     * @page profile - hero's basic info
      * @action getHero - get a hero's profile
      * @api {GET} /api/heroes/:id
      * @param {Int} id - hero's id
@@ -75,8 +91,12 @@ test('tokenizer() -> all @', t => {
      
   t.deepEqual(tokenizer(input), [
     { "type": "tag", "value": "module" },
-    { "type": "field", "value": "setting/profile" },
-    { "type": "description", "value": "hero's basic info" },
+    { "type": "field", "value": "setting" },
+    { "type": "description", "value": "hero's setting" },
+    
+    { type: 'tag', value: 'page' },
+    { type: 'field', value: 'profile' },
+    { type: 'description', value: 'hero\'s basic info' },
 
     { "type": "tag", "value": "action" },
     { "type": "field", "value": "getHero" },
