@@ -1,8 +1,8 @@
 {
-  "name": "couple",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "cp3",
+  "version": "0.0.0",
+  "description": "a comment parser",
+  "main": "dist/cp3.js",
   "scripts": {
     "start": "rollup -c -w",
     "build": "rollup -c",
@@ -23,9 +23,17 @@
       }
     }
   },
-  "keywords": [],
-  "author": "Drake Leung",
+  "keywords": [
+    "comment",
+    "parser"
+  ],
+  "author": "Drake Leung <drakeleung42@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DrakeLeung/cp3.git"
+  },
+  "bugs": "https://github.com/DrakeLeung/cp3/issues",
   "devDependencies": {
     "ava": "^0.16.0",
     "coveralls": "^2.11.14",
