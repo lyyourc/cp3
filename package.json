@@ -1,6 +1,6 @@
 {
   "name": "cp3",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a comment parser",
   "main": "dist/cp3.js",
   "scripts": {
