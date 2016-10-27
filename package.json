@@ -3,6 +3,9 @@
   "version": "0.0.2",
   "description": "a comment parser",
   "main": "dist/cp3.js",
+  "engines" : {
+    "node" : ">=7.0.0"
+  },
   "scripts": {
     "start": "rollup -c -w",
     "build": "NODE_ENV=prod rollup -c",
