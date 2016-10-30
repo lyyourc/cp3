@@ -1,18 +1,16 @@
 const comment = `
-  /*
-   * @module setting/profile - hero's basic info
+  /**
+   * @module setting - hero's setting
+   * @page profile - hero's basic info
    * @action getHero - get a hero's profile
    * @api {GET} /api/heroes/:id
    * @param {Int} id - hero's id
-   */
-  
-  /*
-   * @module setting/profile
-   * @action getUser
-   * @api {GET} /api/users
    */`
-   
-const { tokenizer } = couple
+     
+const { tokenizer, parser, transformer } = cp3
 
 const tokens = tokenizer(comment)
-console.log('hello', tokens)
+const ast = parser(tokens)
+const newAst = transformer(ast)
+
+console.log(JSON.stringify(newAst, null, 2))
